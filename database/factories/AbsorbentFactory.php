@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Machine;
+use DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,16 @@ class AbsorbentFactory extends Factory
     public function definition(): array
     {
         return [
-            'machineID' => Machine::all()->random()->id,
+            'machineID' => DB::table('machine')->whereNotIn(
+                'id',
+                array_unique(
+                    array_merge(
+                        DB::table('absorbent')->pluck('machineID')->toArray(),
+                        DB::table('compressor')->pluck('machineID')->toArray(),
+                        DB::table('production_machine')->pluck('machineID')->toArray()
+                    )
+                )
+            )->pluck('id')->random(),
         ];
     }
 }

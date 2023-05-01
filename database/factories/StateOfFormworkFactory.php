@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\ProductionMachine;
+use DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,9 @@ class StateOfFormworkFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'productionMachineID' => ProductionMachine::all()->random()->id,
+            'productionMachineID' => ProductionMachine::whereNotIn('id', DB::table('state_of_formwork')->pluck('productionMachineID')->toArray())->pluck('id')->random(),
             'isOpen' => $this->faker->boolean(),
             'dateOfState' => $this->faker->dateTimeBetween('-1 week', 'now'),
         ];
