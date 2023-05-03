@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Facades\Facade;
 
-$url = env('APP_URL', 'https://factoryapp.roh.boats/');
-
-if (app()->environment('local')) {
-    $url = rtrim($url, '/');
-}
 
 return [
 
@@ -62,7 +57,7 @@ return [
 
 
 
-    'url' => $url,
+    'url' => env('APP_URL', 'https://factoryapp.roh.boats/'),
 
     'asset_url' => env('ASSET_URL'),
 
