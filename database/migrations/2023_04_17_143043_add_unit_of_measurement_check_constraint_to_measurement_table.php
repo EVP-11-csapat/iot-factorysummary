@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('unitOfMeasurement', 10)->change();
         });
 
-        DB::statement('ALTER TABLE measurement ADD CONSTRAINT chk_unitOfMeasurement CHECK (unitOfMeasurement IN ("Kwh", "m3", "piece"))');
+        DB::statement('ALTER TABLE measurement ADD CONSTRAINT chk_unitOfMeasurement CHECK (unitOfMeasurement IN ("kWh", "m3", "pieces"))');
     }
 
     /**

@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Absorbent;
 use App\Models\Machine;
+use App\Models\Measurement;
+use App\Models\StateOfFormwork;
 use DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +21,17 @@ class ProductionMachineFactory extends Factory
      */
     public function definition(): array
     {
+        $id = Machine::factory()->create()->id;
+
+        $startDate = today()->subDays(7);
+        $endDate = today();
+
+        for ($date = $startDate; $date <= $endDate; $date->addDay()) {
+            Measurement::factory()->withMachineID($id)->withUnit('kWh')->withDate($date->format('Y-m-d'))->create();
+            Measurement::factory()->withMachineID($id)->withUnit('pieces')->withDate($date->format('Y-m-d'))->create();
+            StateOfFormwork::factory()->withMachineID($id)->withDate($date->format('Y-m-d'))->create();
+        }
+
         return [
             // 'machineID' => DB::table('machine')->whereNotIn(
             //     'id',
@@ -30,7 +43,7 @@ class ProductionMachineFactory extends Factory
             //         )
             //     )
             // )->pluck('id')->random(),
-            'machineID' => Machine::factory()->create()->id,
+            'machineID' => $id,
             'absorbentID' => Absorbent::all()->random()->id,
         ];
     }

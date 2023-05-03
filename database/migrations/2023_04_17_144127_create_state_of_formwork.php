@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('state_of_formwork', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->foreignId('productionMachineID')->references('id')->on('production_machine');
+            $table->foreignId('machineID')->references('id')->on('machine');
             $table->integer('isOpen');
             $table->date('dateOfState');
         });

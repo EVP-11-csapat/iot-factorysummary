@@ -2,7 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Absorbent;
+use App\Models\Compressor;
+use App\Models\Fact;
+use App\Models\ProductionMachine;
+use App\Models\Section;
+use App\Models\StateOfFormwork;
 use Illuminate\Database\Seeder;
 
 class FactSeeder extends Seeder
@@ -12,12 +17,10 @@ class FactSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Fact::factory()->create();
-        \App\Models\Section::factory()->count(5)->create();
-        \App\Models\Compressor::factory()->count(5)->create();
-        \App\Models\Absorbent::factory()->count(5)->create();
-        \App\Models\ProductionMachine::factory()->count(20)->create();
-        \App\Models\Measurement::factory()->count(100)->create();
-        \App\Models\StateOfFormwork::factory()->count(100)->create();
+        Fact::factory()->create();
+        Section::factory()->count(5)->create();
+        Compressor::factory()->count(5)->create();
+        Absorbent::factory()->count(5)->create();
+        ProductionMachine::factory()->count(5)->create();
     }
 }

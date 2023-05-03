@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Machine;
+use App\Models\Measurement;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,4 +25,26 @@ class MeasurementFactory extends Factory
             'unitOfMeasurement' => $this->faker->randomElement(['Kwh', 'm3', 'piece'])
         ];
     }
+
+    public function withMachineID($machineID) : MeasurementFactory
+    {
+        return $this->state([
+            'machineID' => $machineID
+        ]);
+    }
+
+    public function withDate($date) : MeasurementFactory
+    {
+        return $this->state([
+            'dateOfMeasurement' => $date
+        ]);
+    }
+
+    public function withUnit($unit) : MeasurementFactory
+    {
+        return $this->state([
+            'unitOfMeasurement' => $unit
+        ]);
+    }
+
 }
