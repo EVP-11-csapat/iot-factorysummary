@@ -20,16 +20,17 @@ class ProductionMachineFactory extends Factory
     public function definition(): array
     {
         return [
-            'machineID' => DB::table('machine')->whereNotIn(
-                'id',
-                array_unique(
-                    array_merge(
-                        DB::table('absorbent')->pluck('machineID')->toArray(),
-                        DB::table('compressor')->pluck('machineID')->toArray(),
-                        DB::table('production_machine')->pluck('machineID')->toArray()
-                    )
-                )
-            )->pluck('id')->random(),
+            // 'machineID' => DB::table('machine')->whereNotIn(
+            //     'id',
+            //     array_unique(
+            //         array_merge(
+            //             DB::table('absorbent')->pluck('machineID')->toArray(),
+            //             DB::table('compressor')->pluck('machineID')->toArray(),
+            //             DB::table('production_machine')->pluck('machineID')->toArray()
+            //         )
+            //     )
+            // )->pluck('id')->random(),
+            'machineID' => Machine::factory()->create()->id,
             'absorbentID' => Absorbent::all()->random()->id,
         ];
     }
