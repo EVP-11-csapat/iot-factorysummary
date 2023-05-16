@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Http;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = DB::table('measurement')
+        ->select('unitOfMeasurement', DB::raw('SUM(measuredValue) as valueSum'), 'dateOfMeasurement')
+        ->where('unitOfMeasurement', "kWh")
+        ->groupBy('dateOfMeasurement', 'unitOfMeasurement')->get();
+    return view("welcome")->with("data", $data);
 });
 
 Route::get("/test", function () {

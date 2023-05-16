@@ -1,24 +1,56 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <!-- Fonts -->
-    <style>
-        .bg-dots-lighter {
-            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E")
-        }
-    </style>
+    <title>Factory</title>
+    @vite('resources/js/app.js')
+    @vite('node_modules/chart.js/dist/chart.js')
 </head>
 
 <body>
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-gray-900 bg-dots-lighter bg-center ">
-        <p class="text-white">11. csapat Factory App</p>
-    </div>
+<canvas id="myChart"></canvas>
+<script type="module">
+    Chart.register(...registerables);
+
+    var data = @json($data);
+    var labels = data.map(function (d) {
+        return d.dateOfMeasurement;
+    });
+    var values = data.map(function (d) {
+        return d.valueSum;
+    });
+
+    var chartData = {
+        labels: labels,
+        datasets: [{
+            label: 'Power Consumption',
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    };
+</script>
 </body>
 
 </html>
