@@ -10,10 +10,25 @@
     @vite('resources/js/app.js')
 </head>
 
-<body>
-    <canvas id="myChart"></canvas>
-    <canvas id="myChart2"></canvas>
-    <canvas id="myChart3"></canvas>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold text-center">Status Page</h1>
+        <div class="grid grid-cols-3 gap-4 mt-8">
+            <div class="col-span-1">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+            <div class="col-span-1">
+                <canvas id="myChart2" width="400" height="400"></canvas>
+            </div>
+            <div class="col-span-1">
+                <canvas id="myChart3" width="400" height="400"></canvas>
+            </div>
+        </div>
+        <div class="flex justify-center mt-4">
+            <a href="/test" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Go to
+                Measurements Table</a>
+        </div>
+    </div>
     <script type="module">
     Chart.register(...registerables);
 

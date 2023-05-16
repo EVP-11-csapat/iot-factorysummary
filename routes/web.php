@@ -35,5 +35,7 @@ Route::get('/', function () {
 
 Route::get("/test", function () {
     $data = DB::table('measurement')->get();
-    return view("tempDataView")->with("data", $data);
+    $data1 = DB::table('state_of_formwork')->get();
+    $data2 = DB::table('machine')->get();
+    return view("tempDataView")->with("data", $data)->with("data1", $data1)->with("data2", $data2);
 });
