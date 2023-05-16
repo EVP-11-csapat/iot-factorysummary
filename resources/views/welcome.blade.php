@@ -8,7 +8,6 @@
     @vite('resources/css/app.css')
     <title>Factory</title>
     @vite('resources/js/app.js')
-    @vite('node_modules/chart.js/dist/chart.js')
 </head>
 
 <body>
