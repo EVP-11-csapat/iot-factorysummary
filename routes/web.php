@@ -20,7 +20,17 @@ Route::get('/', function () {
         ->select('unitOfMeasurement', DB::raw('SUM(measuredValue) as valueSum'), 'dateOfMeasurement')
         ->where('unitOfMeasurement', "kWh")
         ->groupBy('dateOfMeasurement', 'unitOfMeasurement')->get();
-    return view("welcome")->with("data", $data);
+
+    $data2 = DB::table('measurement')
+        ->select('unitOfMeasurement', DB::raw('SUM(measuredValue) as valueSum'), 'dateOfMeasurement')
+        ->where('unitOfMeasurement', "pieces")
+        ->groupBy('dateOfMeasurement', 'unitOfMeasurement')->get();
+
+    $data3 = DB::table('measurement')
+        ->select('unitOfMeasurement', DB::raw('SUM(measuredValue) as valueSum'), 'dateOfMeasurement')
+        ->where('unitOfMeasurement', "m3")
+        ->groupBy('dateOfMeasurement', 'unitOfMeasurement')->get();
+    return view("welcome")->with("data", $data)->with("data2", $data2)->with("data3", $data3);
 });
 
 Route::get("/test", function () {
