@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('factory', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->float('waterConsumtion')->default(0);
+            $table->float('waterConsumption')->default(0);
         });
     }
 

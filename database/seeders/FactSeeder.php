@@ -21,6 +21,6 @@ class FactSeeder extends Seeder
         Section::factory()->count(5)->create();
         Compressor::factory()->count(5)->create();
         Absorbent::factory()->count(5)->create();
-        ProductionMachine::factory()->count(5)->create();
+        ProductionMachine::factory()->count(20)->create();
     }
 }

@@ -17,7 +17,7 @@ class FactFactory extends Factory
     public function definition(): array
     {
         return [
-            'waterConsumtion' => $this->faker->randomFloat(2, 0, 1000000),
+            'waterConsumption' => $this->faker->randomFloat(2, 0, 1000000),
         ];
     }
 }

@@ -25,6 +25,15 @@
             </div>
         </div>
         <div class="flex justify-center mt-4">
+            <span class="font-bold mr-1">Current water consumption: </span> {{ $waterConsumption }}
+        </div>
+        <div class="flex justify-center mt-4">
+            <span class="font-bold mr-1">Number of sections: </span> {{ $numberOfSections }}
+        </div>
+        <div class="flex justify-center mt-4">
+            <span class="font-bold mr-1">Number of machines: </span> {{ $numberOfMachines }}
+        </div>
+        <div class="flex justify-center mt-4">
             <a href="/test" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Go to
                 Measurements Table</a>
         </div>
